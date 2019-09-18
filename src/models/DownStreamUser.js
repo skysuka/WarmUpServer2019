@@ -1,7 +1,12 @@
 // Author: K
+// _DownStreamLogicProcess封装了distributeMarket(turn,oneTurnInputJSON)函数，这里引入后再exports。
+// 添加了
+
 
 const Sequelize = require('sequelize')
 const config = require('../config.js')
+
+require('./_DownStreamLogicProcess.js/index.js')
 
 
 var sequelize = new Sequelize(config.database, config.username, config.password, {
@@ -12,30 +17,27 @@ var sequelize = new Sequelize(config.database, config.username, config.password,
         max: config.pool.max,
         min: config.pool.min,
         idle: config.pool.idle//?
-        // TO DO 1
     },
     timezone: config.timezone
 });
 
-var User = sequelize.define('downStreamUser', {
+var DownStreamUser = sequelize.define('downStreamUser', {
     id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true
     },
-    /*
-    name: {
-        type: Sequelize.STRING(100),
-        unique: true,
-        allowNull: true
-    },
-    email: {
-        type: Sequelize.STRING(100),
-        allowNull: false
-    },
-    */
-   // TO DO 2
-   // password需要放在表里吗？还是继承这种
+    
+    // name: {
+    //     type: Sequelize.STRING(100),
+    //     unique: true,
+    //     allowNull: true
+    // },
+    // email: {
+    //     type: Sequelize.STRING(100),
+    //     allowNull: false
+    // },
+    
     password: Sequelize.STRING(50),
     isActivated: {
         type: Sequelize.INTEGER,
@@ -48,7 +50,7 @@ var User = sequelize.define('downStreamUser', {
     phoneNum: Sequelize.JSON,
     
     totalStroageCost: Sequelize.INTEGER,
-    xxx: Sequelize.FLOAT,
+    xxx: Sequelize.FLOAT, //广告投入系数，暂时定为xxx
     currency: Sequelize.FLOAT,
     debt: Sequelize.FLOAT,
 
@@ -68,33 +70,49 @@ function sync() {
 /**
  * 添加用户
  */
-function addUser(email, password) {
+function addUser(id, password) {
     return User.create({
-            email: email,
+            id: id,
             password: password
         })
 };
 
+
 /**
- * 根据name查找用户
+ * 根据id查找用户
  */
-function findUserByName(name) {
-    return User.findOne({
+function findUserById(id) {
+    return DownStreamUser.findOne({
         where:{
-            name: name
+            id:id
         }
     })
 };
 
-/**
- * 根据email查找用户
- */
-function findUserByEmail(email) {
-    return User.findOne({
-        where:{
-            email: email
-        }
-    })
-}
 
-module.exports = {sync, addUser, findUserByName, findUserByEmail}
+// /**
+//  * 根据name查找用户
+//  */
+// function findUserByName(name) {
+//     return User.findOne({
+//         where:{
+//             name: name
+//         }
+//     })
+// };
+
+// /**
+//  * 根据email查找用户
+//  */
+// function findUserByEmail(email) {
+//     return User.findOne({
+//         where:{
+//             email: email
+//         }
+//     })
+// }
+
+
+    
+
+module.exports = {sync, addUser, findUserById, distributeMarket};
