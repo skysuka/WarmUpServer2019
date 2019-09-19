@@ -1,4 +1,5 @@
-const userController = require('./controller/user')
+const userController = require('./controller/user');
+const downStreamUserController = require('./controller/downStreamUserController');
 const upStreamUserController = require('./controller/upStreamUser')
 
 module.exports = (router) => {
@@ -11,5 +12,6 @@ module.exports = (router) => {
     .post('/user/logout', userController.logout)
 
     .post('/upstream/produce', upStreamUserController.produce)
+    .post('/processOneTurnSell',downStreamUserController.processOneTurnSell) //TODO : 不确定咋写
     ;
 };
