@@ -183,3 +183,6 @@ function distributeMarket(turn, oneTurnInputJSON) {
     }
     return oneTurnInput;
 }
+
+
+module.exports = distributeMarket;
