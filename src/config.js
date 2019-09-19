@@ -1,9 +1,9 @@
 var Sequelize = require("sequelize");
  var config = {
     database: 'itp',
-    username: 'root',
-    password: 'rootroot',
-    host: 'localhost',
+    username: 'itp',
+    password: 'itp2019',
+    host: '47.100.124.154',
     dialect: 'mysql',
     port: 3306,
     pool: {
