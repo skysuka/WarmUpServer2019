@@ -1,6 +1,6 @@
 const userController = require('./controller/user');
+const upStreamUserController = require('./controller/upStreamUser');
 const downStreamUserController = require('./controller/downStreamUser');
-const upStreamUserController = require('./controller/upStreamUser')
 
 module.exports = (router) => {
   router.prefix('/api');
@@ -12,6 +12,6 @@ module.exports = (router) => {
     .post('/user/logout', userController.logout)
 
     .post('/upstream/produce', upStreamUserController.produce)
-    .post('/processOneTurnSell',downStreamUserController.produce)
+    .post('/downstream/produce',downStreamUserController.produce)
     ;
 };

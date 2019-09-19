@@ -67,7 +67,7 @@ class DownStreamUserController {
 
 
 
-  async processOneTurnSell(ctx) {
+  async produce(ctx) {
       const data = ctx.request.body;
       // const result = await 
       // TODO : 这里似乎需要重新建表？因为要把一轮输入完毕后，每个玩家的输入都汇总到一个json中
