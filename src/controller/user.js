@@ -9,6 +9,12 @@
 var User = require('../models/User')
 
 class UserController {
+  async test(ctx) {
+    ctx.body = {
+      status: 200,
+      infoText: '部署成功'
+    };
+  }
   async login(ctx) {
     const data = ctx.request.body;
     const result = await User.findUserByEmail(data.email);
