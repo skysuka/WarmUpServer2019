@@ -89,30 +89,4 @@ function findUserById(id) {
     })
 };
 
-
-// /**
-//  * 根据name查找用户
-//  */
-// function findUserByName(name) {
-//     return User.findOne({
-//         where:{
-//             name: name
-//         }
-//     })
-// };
-
-// /**
-//  * 根据email查找用户
-//  */
-// function findUserByEmail(email) {
-//     return User.findOne({
-//         where:{
-//             email: email
-//         }
-//     })
-// }
-
-
-    
-
 module.exports = {sync, addUser, findUserById, distributeMarket};
